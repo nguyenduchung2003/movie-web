@@ -1,0 +1,20 @@
+body {
+     margin: 0;
+     padding: 0;
+}
+
+.boxFormik {
+     background-image: url("../assets/Picture/imgRegister.jpg");
+     background-repeat: no-repeat;
+     width: 100%;
+     height: 100vh;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     /* font-family: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu,
+          sans-serif;
+     color: white; */
+}
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+     color: white;
+}
