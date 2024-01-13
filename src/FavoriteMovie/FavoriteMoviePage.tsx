@@ -4,7 +4,7 @@ import {
      // , Typography
 } from "@mui/material"
 import {
-     // useEffect,
+     useEffect,
      useMemo,
      useState,
      // , useEffect
@@ -21,7 +21,7 @@ import {
      // listFavoriteMovie,
      addListMovie,
      updateListMovie,
-     // listFavoriteMovieDetail,
+     listFavoriteMovieDetail,
 } from "../Slice/SliceMovieFavorite"
 import DialogList from "./DialogList"
 import { ToastContainer, toast } from "react-toastify"
@@ -46,6 +46,24 @@ const FavoriteMoviePage = () => {
      const dataItemList = useSelector(
           (state: RootState) => state.favoriteMovie.resultsFavoriteItems
      )
+     useEffect(() => {
+          // let arrayId: number[] = []
+          // storedData
+          //      .filter((user) => user.status == true)
+          //      .forEach((userNow) => {
+          //           arrayId = userNow.listMovieId
+          //      })
+          // console.log(arrayId)
+          const storedData: userType[] = JSON.parse(
+               localStorage.getItem("users") || "[]"
+          )
+          const storeDataFilter = storedData.filter(
+               (user: userType) => user.status === true
+          )
+          const userObj = Object.assign({}, ...storeDataFilter)
+          console.log(userObj)
+          dispatch(listFavoriteMovieDetail(userObj.listMovieId))
+     }, [dispatch, storedData])
      // useEffect(() => {
      //      let arrayId: number[] = []
      //      storedData

@@ -41,11 +41,11 @@ const router = createBrowserRouter([
      //      element: <EpisodesMovie />,
      // },
      {
-          path: "/SearchPage/:category?/:title?&:page?",
+          path: "/movie-web/SearchPage/:category?/:title?&:page?",
           element: <SeachPage />,
      },
      {
-          path: "/Favorites",
+          path: "/movie-web/Favorites",
           element: <FavoriteMoviePage />,
      },
 ])
