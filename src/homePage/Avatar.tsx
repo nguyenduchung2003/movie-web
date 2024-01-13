@@ -17,7 +17,7 @@ const Avatar = () => {
           })
 
           localStorage.setItem("users", JSON.stringify(storedData))
-          navigate("/login")
+          navigate("/movie-web/login")
      }
      // storedData.filter(user: userType) =>  user.status == true
      return (
@@ -50,7 +50,7 @@ const Avatar = () => {
                          </ListItemButton>
                          <ListItemButton className="hover:bg-gray-500 w-full">
                               <NavLink
-                                   to="/Favorites"
+                                   to="/movie-web/Favorites"
                                    className="no-underline "
                               >
                                    Phim đã thích
@@ -58,7 +58,7 @@ const Avatar = () => {
                          </ListItemButton>
                          <ListItemButton className="hover:bg-gray-500 w-full">
                               <NavLink
-                                   to="/SearchPage"
+                                   to="/movie-web/SearchPage"
                                    className="no-underline "
                               >
                                    Tìm kiếm phim

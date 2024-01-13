@@ -18,7 +18,7 @@ const MovieSimilar = ({ id }: { id: number }) => {
      ) => {
           const { id } = e.currentTarget
 
-          navigate(`/homePage/${id}`)
+          navigate(`/movie-web/homePage/${id}`)
      }
 
      // const urlImg = "https://image.tmdb.org/t/p/w500"

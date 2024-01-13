@@ -163,7 +163,7 @@ const HomePage = () => {
      }
      const navigator = useNavigate()
      const handleNav = () => {
-          navigator(`/homePage/${itemPage.id}`)
+          navigator(`/movie-web/homePage/${itemPage.id}`)
      }
 
      return (

@@ -164,7 +164,7 @@ const CategoryMovie: React.FC<CategoryMovieProps> = ({
      // console.log(totalPages)
      const navigate = useNavigate()
      const handleNav = (id: number) => {
-          navigate(`/homePage/${id}`)
+          navigate(`/movie-web/homePage/${id}`)
      }
      return (
           <>

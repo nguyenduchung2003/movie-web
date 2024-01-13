@@ -122,7 +122,7 @@ const Login = () => {
                                              console.log(access_token)
                                              value.sessionId = access_token
                                              value.status = true
-                                             navigate("/homePage")
+                                             navigate("/movie-web/homePage")
                                         } else if (
                                              value.userName == values.email &&
                                              value.passWord ==
@@ -130,7 +130,7 @@ const Login = () => {
                                              value.sessionId != ""
                                         ) {
                                              value.status = true
-                                             navigate("/homePage")
+                                             navigate("/movie-web/homePage")
                                         } else {
                                              console.log(
                                                   "Fail to update session"

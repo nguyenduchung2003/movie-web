@@ -28,14 +28,16 @@ const ListSeachMovie = ({ title, data, flex_col }: Props) => {
      }, [])
      const navigate = useNavigate()
      const handleNav = (id: number) => {
-          navigate(`/homePage/${id}`)
+          navigate(`/movie-web/homePage/${id}`)
      }
      return (
           <>
                <Box>
                     <Typography
                          onClick={() =>
-                              navigate(`/SearchPage/?category=${title}`)
+                              navigate(
+                                   `/movie-web/SearchPage/?category=${title}`
+                              )
                          }
                          className="cursor-pointer"
                          variant="h5"

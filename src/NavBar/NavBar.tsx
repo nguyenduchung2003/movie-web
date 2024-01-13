@@ -51,7 +51,7 @@ const NavBar = () => {
           // console.log(data)
           // dispatch(seacheMovieSearch(data))
           // console.log(1)
-          navigate(`/SearchPage/?title=${textSearch}`)
+          navigate(`/movie-web/SearchPage/?title=${textSearch}`)
      }
 
      return (
@@ -62,12 +62,14 @@ const NavBar = () => {
                          className="flex justify-center items-center "
                     >
                          <ListItemButton
-                              onClick={() => navigate("/homePage")}
+                              onClick={() => navigate("/movie-web/homePage")}
                               className="h-[80%]"
                          >
                               <ListItemText
                                    primary="Home"
-                                   onClick={() => navigate("/homePage")}
+                                   onClick={() =>
+                                        navigate("/movie-web/homePage")
+                                   }
                                    className="flex justify-center items-center hover:text-red-600"
                               />
                          </ListItemButton>
@@ -84,7 +86,7 @@ const NavBar = () => {
                                              className="hover:bg-sky-700 w-[100%] flex justify-center items-center "
                                              onClick={() =>
                                                   navigate(
-                                                       `/SearchPage/?category=${category.id}`
+                                                       `/movie-web/SearchPage/?category=${category.id}`
                                                   )
                                              }
                                         >
@@ -95,12 +97,14 @@ const NavBar = () => {
                          </ListItemButton>
                          {/* </ListItemButton> */}
                          <ListItemButton
-                              onClick={() => navigate("/Favorites")}
+                              onClick={() => navigate("/movie-web/Favorites")}
                               className="h-[80%]"
                          >
                               <ListItemText
                                    primary="List of favorite movies"
-                                   onClick={() => navigate("/Favorites")}
+                                   onClick={() =>
+                                        navigate("/movie-web/Favorites")
+                                   }
                                    className="flex justify-center items-center hover:text-red-600"
                               />
                          </ListItemButton>

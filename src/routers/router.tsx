@@ -9,23 +9,23 @@ import SeachPage from "../SeachPage"
 import FavoriteMoviePage from "../FavoriteMovie/FavoriteMoviePage"
 const router = createBrowserRouter([
      {
-          path: "/",
+          path: "/movie-web/",
           element: <App />,
      },
      {
-          path: "/login",
+          path: "/movie-web/login",
           element: <Login />,
      },
      {
-          path: "/register",
+          path: "/movie-web/register",
           element: <Register />,
      },
      {
-          path: "/homePage",
+          path: "/movie-web/homePage",
           element: <HomePage />,
      },
      {
-          path: "/homePage/:id",
+          path: "/movie-web/homePage/:id",
           element: <MoviePage />,
      },
      // // {
