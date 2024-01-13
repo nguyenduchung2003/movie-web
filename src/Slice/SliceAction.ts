@@ -145,7 +145,7 @@ export const requestToken = createAsyncThunk(
                const response: AxiosResponse<MyResponseV4> =
                     await RequestTokenV4.post("auth/request_token", {
                          redirect_to:
-                              "https://nguyenduchung2003.github.io/movie-web/login",
+                              "https://nguyenduchung2003.github.io/movie-web/",
                     })
 
                const data = response.data
