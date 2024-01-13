@@ -335,7 +335,7 @@ const Register = () => {
                               <Typography className="text-white ">
                                    Tôi đã có tài khoản
                                    <NavLink
-                                        to="/login"
+                                        to="/movie-web/login"
                                         className="text-red-600 relative left-5"
                                    >
                                         Đăng nhập
