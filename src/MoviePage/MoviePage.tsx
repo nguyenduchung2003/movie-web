@@ -109,10 +109,10 @@ const MoviePage = () => {
      const handleCancel = () => {
           setOpen(false)
      }
-     const dataItemList = useSelector(
-          (state: RootState) => state.favoriteMovie.resultsFavoriteItems
-     )
-     console.log(dataItemList)
+     // const dataItemList = useSelector(
+     //      (state: RootState) => state.favoriteMovie.resultsFavoriteItems
+     // )
+     // console.log(dataItemList)
      interface resultsAddItemType {
           media_type: string
           media_id: number
@@ -172,10 +172,10 @@ const MoviePage = () => {
           }
           setOpen(false)
      }
-     const x = useSelector(
-          (state: RootState) => state.favoriteMovie.resultsFavoriteItems
-     )
-     console.log(x)
+     // const x = useSelector(
+     //      (state: RootState) => state.favoriteMovie.resultsFavoriteItems
+     // )
+     // console.log(x)
      return (
           <>
                <Box className="">
