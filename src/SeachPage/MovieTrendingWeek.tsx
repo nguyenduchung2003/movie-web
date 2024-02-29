@@ -10,8 +10,8 @@ const MovieTrendingWeek = ({
      URLImg: string
 }) => {
      return (
-          <Box className="flex flex-col overflow-y-auto overflow-x-hidden h-[1080px] scrollbar ">
-               <Typography className="cursor-pointer" variant="h5">
+          <Box className="flex flex-col overflow-y-auto overflow-x-hidden h-[1080px] scrollbar mt-5">
+               <Typography className="cursor-pointer text-white" variant="h5">
                     Hot trending weekend
                </Typography>
                <Box className="flex flex-col gap-5">
@@ -26,7 +26,7 @@ const MovieTrendingWeek = ({
                                    <Typography className="w-[250px] truncate">
                                         {data.title}
                                    </Typography>
-                                   <Box className="flex justify-between w-[250px]">
+                                   <Box className="flex justify-between">
                                         <Box className="flex">
                                              <StarOutlinedIcon className="text-[yellow]" />
                                              <Typography>

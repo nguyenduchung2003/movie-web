@@ -23,12 +23,12 @@ const Avatar = () => {
      return (
           <>
                <Box className="absolute z-10 right-0 top-4  flex flex-col justify-center items-center  group/item ">
-                    <Typography>
+                    <Typography className="bg-[rgba(0,0,0,.75)] text-white w-[150px] truncate">
                          {storedData
                               ?.filter((user) => user.status == true)
                               .map((userNow) => userNow.userName)}
                     </Typography>
-                    <Box className="bg-red-400">
+                    <Box className="bg-black w-[150px] flex justify-center">
                          <AccountCircleIcon
                               fontSize="large"
                               className="text-white  "
@@ -37,31 +37,52 @@ const Avatar = () => {
 
                     <ListItem
                          disablePadding
-                         className="invisible flex flex-col justify-center items-center bg-white group-hover/item:visible "
+                         className="invisible flex flex-col justify-center items-center bg-white group-hover/item:visible w-[180px]  "
                     >
-                         <ListItemButton
-                              className="hover:bg-gray-500 w-full"
-                              onClick={handleClickLogOut}
-                         >
-                              {/* <NavLink to="/login" className="no-underline  ">
-                                   Đăng xuất
-                              </NavLink> */}
-                              Đăng xuất
-                         </ListItemButton>
-                         <ListItemButton className="hover:bg-gray-500 w-full">
-                              <NavLink
-                                   to="/movie-web/Favorites"
-                                   className="no-underline "
-                              >
-                                   Phim đã thích
-                              </NavLink>
-                         </ListItemButton>
-                         <ListItemButton className="hover:bg-gray-500 w-full">
+                         {storedData?.some((user) => user.status == true) ? (
+                              <>
+                                   <ListItemButton
+                                        className="hover:bg-gray-500 w-full flex justify-center items-center border border-black border-solid"
+                                        onClick={handleClickLogOut}
+                                   >
+                                        Logout
+                                   </ListItemButton>
+                                   <ListItemButton className="hover:bg-gray-500 w-full flex justify-center items-center border border-black border-solid">
+                                        <NavLink
+                                             to="/movie-web/Favorites"
+                                             className="no-underline "
+                                        >
+                                             List of liked movies
+                                        </NavLink>
+                                   </ListItemButton>
+                              </>
+                         ) : (
+                              <>
+                                   <ListItemButton className="hover:bg-gray-500 w-full flex justify-center items-center border border-black border-solid">
+                                        <NavLink
+                                             to="/movie-web/login"
+                                             className="no-underline "
+                                        >
+                                             Login
+                                        </NavLink>
+                                   </ListItemButton>
+                                   <ListItemButton className="hover:bg-gray-500 w-full flex justify-center items-center border border-black border-solid">
+                                        <NavLink
+                                             to="/movie-web/register"
+                                             className="no-underline "
+                                        >
+                                             Register
+                                        </NavLink>
+                                   </ListItemButton>
+                              </>
+                         )}
+
+                         <ListItemButton className="hover:bg-gray-500 w-full flex justify-center items-center border border-black border-solid">
                               <NavLink
                                    to="/movie-web/SearchPage"
                                    className="no-underline "
                               >
-                                   Tìm kiếm phim
+                                   Search for movies
                               </NavLink>
                          </ListItemButton>
                     </ListItem>

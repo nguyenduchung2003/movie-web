@@ -7,6 +7,7 @@ import MoviePage from "../MoviePage"
 import SeachPage from "../SeachPage"
 // import FavoriteMovie from "../FavoriteMovie"
 import FavoriteMoviePage from "../FavoriteMovie/FavoriteMoviePage"
+
 const router = createBrowserRouter([
      {
           path: "/movie-web/",

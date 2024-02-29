@@ -17,6 +17,7 @@ import FramePage from "./FramePage"
 import CategoryMovie from "./CategoryMovie"
 
 import { useParams, useLocation, useSearchParams } from "react-router-dom"
+import Footer from "../Footer"
 // import { URLImg } from "../axios/customAxios"
 const SeachPage = () => {
      const [searchParams] = useSearchParams()
@@ -83,7 +84,7 @@ const SeachPage = () => {
                               textSearch={title}
                          />
                     ) : (
-                         <Box className="w-[100%] min-w-[500px]">
+                         <Box className=" min-w-[500px] flex flex-col gap-3 mt-5">
                               <ListSeachMovie
                                    title="Popular Movie"
                                    data={dataPopularSelector}
@@ -100,28 +101,8 @@ const SeachPage = () => {
                          </Box>
                     )}
                </FramePage>
-               {/* <NavBar />
-               <Box className="flex justify-around">
-                    <Box className="w-[70%]">
-                         <ListSeachMovie
-                              title="Popular Movie"
-                              data={dataPopularSelector}
-                         ></ListSeachMovie>
 
-                         <ListSeachMovie
-                              title="Top Rate Movie"
-                              data={dataTopRateSelector}
-                         ></ListSeachMovie>
-                         <ListSeachMovie
-                              title="Upcoming Movie"
-                              data={dataUpcomingSelector}
-                         ></ListSeachMovie>
-                    </Box>
-                    <MovieTrendingWeek
-                         dataTrendingSelector={dataTrendingSelector}
-                         URLImg={URLImg}
-                    />
-               </Box> */}
+               <Footer />
           </>
      )
 }

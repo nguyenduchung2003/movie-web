@@ -333,12 +333,12 @@ const Register = () => {
                                    Register
                               </Button>
                               <Typography className="text-white ">
-                                   Tôi đã có tài khoản
+                                   I already have an account
                                    <NavLink
                                         to="/movie-web/login"
                                         className="text-red-600 relative left-5"
                                    >
-                                        Đăng nhập
+                                        Login
                                    </NavLink>
                               </Typography>
                          </Form>

@@ -5,20 +5,27 @@
 @layer utilities {
      .scrollbar::-webkit-scrollbar {
           height: 10px;
+          display: none;
+     }
+     .scrollbarMovieTrailer::-webkit-scrollbar {
+          height: 3px;
      }
 
-     .scrollbar::-webkit-scrollbar-track {
+     .scrollbar::-webkit-scrollbar-track,
+     .scrollbarMovieTrailer::-webkit-scrollbar-track {
           border-radius: 100vh;
-          background: #f7f4ed;
+          background: #706e6a;
      }
 
-     .scrollbar::-webkit-scrollbar-thumb {
+     .scrollbar::-webkit-scrollbar-thumb,
+     .scrollbarMovieTrailer::-webkit-scrollbar-thumb {
           background: #e0cbcb;
           border-radius: 100vh;
           border: 3px solid #f6f7ed;
      }
 
-     .scrollbar::-webkit-scrollbar-thumb:hover {
+     .scrollbar::-webkit-scrollbar-thumb:hover,
+     .scrollbarMovieTrailer::-webkit-scrollbar-thumb:hover {
           background: #c0a0b9;
      }
 }

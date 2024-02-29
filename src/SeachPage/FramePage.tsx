@@ -45,15 +45,21 @@ const FramePage: React.FC<PropsWithChildren> = ({ children }) => {
 
      return (
           <>
-               <Box className="min-w-[500px]">
-                    <NavBar />
-                    <Box className="flex gap-[50px] w-full ">
-                         <Box className="w-[75%] ml-[50px]">{children}</Box>
+               <Box className="min-w-[500px] ">
+                    <Box className="bg-[rgba(0,0,0,.75)] text-white">
+                         <NavBar />
+                    </Box>
+                    <Box className="bg-black ">
+                         <Box className="flex gap-[50px] w-full ">
+                              <Box className="max-w-[75%] ml-[50px]">
+                                   {children}
+                              </Box>
 
-                         <MovieTrendingWeek
-                              dataTrendingSelector={dataTrendingSelector}
-                              URLImg={URLImg}
-                         />
+                              <MovieTrendingWeek
+                                   dataTrendingSelector={dataTrendingSelector}
+                                   URLImg={URLImg}
+                              />
+                         </Box>
                     </Box>
                </Box>
           </>

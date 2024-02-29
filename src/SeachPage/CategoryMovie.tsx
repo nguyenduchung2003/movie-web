@@ -168,7 +168,7 @@ const CategoryMovie: React.FC<CategoryMovieProps> = ({
      }
      return (
           <>
-               <Typography variant="h5">
+               <Typography variant="h5" className="text-white p-4">
                     Search:
                     {dataSelectGenres.filter((genres) => {
                          return genres.id == Number(category)
@@ -183,94 +183,114 @@ const CategoryMovie: React.FC<CategoryMovieProps> = ({
                          : category || title}
                </Typography>
 
-               <Box className="flex flex-wrap gap-5 ">
-                    {data.length > 0
-                         ? data?.map((movie, index) => {
-                                return (
-                                     <Box
-                                          key={index}
-                                          onClick={() =>
-                                               handleNav(movie.id as number)
-                                          }
-                                          className="bg-black text-white"
-                                     >
-                                          <img
-                                               src={`${URLImg}${movie.poster_path}`}
-                                               alt=""
-                                               className="w-[250px] h-[300px] bg-cover "
-                                          />
-                                          <Typography className="w-[250px] truncate">
-                                               {movie.title}
-                                          </Typography>
-                                          <Box className="flex justify-between w-[250px]">
-                                               <Box className="flex">
-                                                    <StarOutlinedIcon className="text-[yellow]" />
-                                                    <Typography>
-                                                         {movie.vote_average
-                                                              ? Math.round(
-                                                                     movie.vote_average *
-                                                                          10
-                                                                ) / 10
-                                                              : 0}
-                                                    </Typography>
-                                               </Box>
-                                               <Typography className="">
-                                                    {
-                                                         movie.release_date?.split(
-                                                              "-"
-                                                         )[0]
-                                                    }
-                                               </Typography>
-                                          </Box>
-                                     </Box>
-                                )
-                           })
-                         : "Không tìm thấy phim nào"}
-               </Box>
-               <Stack
-                    spacing={2}
-                    className="flex justify-center items-center mt-3"
-               >
-                    <Pagination
-                         count={totalPages > 500 ? 500 : totalPages}
-                         color="primary"
-                         onChange={(event, pageNumber) =>
-                              pageChangeHandler(event, pageNumber)
-                         }
-                         page={numberPage}
-                         renderItem={(item) => {
-                              // const page =
-                              //      item.page === 1
-                              //           ? // ? "&page=1"
-                              //             // : `&page=${item.page}`
-                              //             `?page=${item.page}`
-                              //           : `?page=${item.page}`
-                              const pageQueryParam =
-                                   item.page === 1
-                                        ? "&page=1"
-                                        : `&page=${item.page}`
+               <Box className="flex flex-wrap gap-5 justify-center items-center">
+                    {data.length > 0 ? (
+                         <>
+                              <Box className="flex flex-wrap gap-5 justify-center items-center">
+                                   {data?.map((movie, index) => {
+                                        return (
+                                             <Box
+                                                  key={index}
+                                                  onClick={() =>
+                                                       handleNav(
+                                                            movie.id as number
+                                                       )
+                                                  }
+                                                  className="bg-gray-500 rounded-lg text-white "
+                                             >
+                                                  <img
+                                                       src={`${URLImg}${movie.poster_path}`}
+                                                       alt=""
+                                                       className="w-[210px] h-[300px] bg-cover border rounded-t-lg "
+                                                  />
 
-                              const categorySearch = textSearch
-                                   ? `?title=${textSearch}`
-                                   : `?category=${category}`
-                              // if (data?.length > 0) {
-                              return (
-                                   <PaginationItem
-                                        component={NavLink}
-                                        // to={`/SeachPage/${category}/${
-                                        //      item.page === 1
-                                        //           ? "?page=1"
-                                        //           : `?page=${item.page}`
-                                        // }`}
-                                        // to={`/SearchPage/${categorySearch}${page}`}
-                                        to={`/SearchPage/${categorySearch}${pageQueryParam}`}
-                                        {...item}
-                                   />
-                              )
-                              // }
-                         }}
-                    ></Pagination>
-               </Stack>
+                                                  <Box className="flex flex-col w-[200px] ">
+                                                       <Typography className=" truncate flex ">
+                                                            {movie.title}
+                                                       </Typography>
+                                                       <Box className="flex justify-between  ">
+                                                            <Box className="flex">
+                                                                 <StarOutlinedIcon className="text-[yellow]" />
+                                                                 <Typography>
+                                                                      {movie.vote_average
+                                                                           ? Math.round(
+                                                                                  movie.vote_average *
+                                                                                       10
+                                                                             ) /
+                                                                             10
+                                                                           : 0}
+                                                                 </Typography>
+                                                            </Box>
+                                                            <Typography className="">
+                                                                 {
+                                                                      movie.release_date?.split(
+                                                                           "-"
+                                                                      )[0]
+                                                                 }
+                                                            </Typography>
+                                                       </Box>
+                                                  </Box>
+                                             </Box>
+                                        )
+                                   })}
+                              </Box>
+                              <Stack
+                                   spacing={2}
+                                   className="flex justify-center items-center mt-3 mb-5"
+                              >
+                                   <Pagination
+                                        count={
+                                             totalPages > 500 ? 500 : totalPages
+                                        }
+                                        color="primary"
+                                        onChange={(event, pageNumber) =>
+                                             pageChangeHandler(
+                                                  event,
+                                                  pageNumber
+                                             )
+                                        }
+                                        page={numberPage}
+                                        renderItem={(item) => {
+                                             // const page =
+                                             //      item.page === 1
+                                             //           ? // ? "&page=1"
+                                             //             // : `&page=${item.page}`
+                                             //             `?page=${item.page}`
+                                             //           : `?page=${item.page}`
+                                             const pageQueryParam =
+                                                  item.page === 1
+                                                       ? "&page=1"
+                                                       : `&page=${item.page}`
+
+                                             const categorySearch = textSearch
+                                                  ? `?title=${textSearch}`
+                                                  : `?category=${category}`
+                                             // if (data?.length > 0) {
+                                             return (
+                                                  <PaginationItem
+                                                       className="text-white"
+                                                       component={NavLink}
+                                                       // to={`/SeachPage/${category}/${
+                                                       //      item.page === 1
+                                                       //           ? "?page=1"
+                                                       //           : `?page=${item.page}`
+                                                       // }`}
+                                                       // to={`/SearchPage/${categorySearch}${page}`}
+                                                       to={`/movie-web/SearchPage/${categorySearch}${pageQueryParam}`}
+                                                       {...item}
+                                                  />
+                                             )
+                                             // }
+                                        }}
+                                   ></Pagination>
+                              </Stack>
+                         </>
+                    ) : (
+                         <Typography className="text-white w-[1150px] flex justify-center items-center">
+                              No valid movies found
+                         </Typography>
+                    )}
+               </Box>
           </>
      )
 }

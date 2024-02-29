@@ -319,7 +319,7 @@ const FavoriteMovieHomePage: React.FC<Props> = ({
 
      return (
           <>
-               <Box>
+               <Box className="text-white">
                     {updateComment ? (
                          <DialogComment
                               open={updateComment}
@@ -346,247 +346,305 @@ const FavoriteMovieHomePage: React.FC<Props> = ({
                     ) : (
                          ""
                     )}
+                    {dataItemList && dataItemList.length > 0 ? (
+                         <Table sx={{ minWidth: 650 }}>
+                              <TableHead>
+                                   <TableRow>
+                                        <TableCell className="text-white">
+                                             View
+                                        </TableCell>
+                                        <TableCell className="text-white">
+                                             Name{" "}
+                                        </TableCell>
 
-                    <Table sx={{ minWidth: 650 }} aria-label="caption table">
-                         <TableHead>
-                              <TableRow>
-                                   <TableCell>View</TableCell>
-                                   <TableCell>Name </TableCell>
+                                        <TableCell
+                                             align="center"
+                                             className="text-white"
+                                        >
+                                             Description
+                                        </TableCell>
 
-                                   <TableCell align="center">
-                                        Description
-                                   </TableCell>
+                                        <TableCell
+                                             align="right"
+                                             className="text-white"
+                                        >
+                                             Delete
+                                        </TableCell>
+                                        <TableCell
+                                             align="right"
+                                             className="text-white"
+                                        >
+                                             Update
+                                        </TableCell>
+                                        <TableCell
+                                             align="right"
+                                             className="text-white"
+                                        >
+                                             ClearItem
+                                        </TableCell>
+                                   </TableRow>
+                              </TableHead>
 
-                                   <TableCell align="right">Delete</TableCell>
-                                   <TableCell align="right">Update</TableCell>
-                                   <TableCell align="right">
-                                        ClearItem
-                                   </TableCell>
-                              </TableRow>
-                         </TableHead>
-                         <TableBody>
-                              {/* dataSelector dataItemList */}
-                              {dataItemList?.map((row, index) => (
-                                   <React.Fragment key={index}>
-                                        <TableRow>
-                                             <TableCell>
-                                                  <IconButton
-                                                       aria-label="expand row"
-                                                       size="small"
-                                                       onClick={() => {
-                                                            const newOpen = [
-                                                                 ...openTable,
-                                                            ]
-                                                            newOpen[index] =
-                                                                 !newOpen[index]
-                                                            setOpenTable(
-                                                                 newOpen
-                                                            )
-                                                       }}
-                                                  >
-                                                       {openTable[index] ? (
-                                                            <KeyboardArrowUpIcon />
-                                                       ) : (
-                                                            <KeyboardArrowDownIcon />
-                                                       )}
-                                                  </IconButton>
-                                             </TableCell>
-                                             <TableCell
-                                                  component="th"
-                                                  scope="row"
-                                             >
-                                                  {row.name}
-                                             </TableCell>
+                              <TableBody>
+                                   {/* dataSelector dataItemList */}
 
-                                             <TableCell align="center">
-                                                  {row.description}
-                                             </TableCell>
-                                             <TableCell
-                                                  align="right"
-                                                  onClick={() =>
-                                                       handlerDeleteList(
-                                                            row.id as number
-                                                       )
-                                                  }
-                                             >
-                                                  <DeleteIcon />
-                                             </TableCell>
-                                             <TableCell
-                                                  align="right"
-                                                  onClick={() =>
-                                                       handlerUpdateList(
-                                                            row.id as number,
-                                                            row.name as string,
-                                                            row.description as string
-                                                       )
-                                                  }
-                                             >
-                                                  <CreateIcon />
-                                             </TableCell>
-                                             <TableCell
-                                                  align="right"
-                                                  onClick={() =>
-                                                       handlerClearItemList(
-                                                            row.id as number
-                                                       )
-                                                  }
-                                             >
-                                                  <DeleteIcon />
-                                             </TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                             <TableCell
-                                                  style={{
-                                                       paddingBottom: 0,
-                                                       paddingTop: 0,
-                                                  }}
-                                                  colSpan={6}
-                                             >
-                                                  <Collapse
-                                                       in={openTable[index]}
-                                                       timeout="auto"
-                                                       unmountOnExit
-                                                  >
-                                                       <Box sx={{ margin: 1 }}>
-                                                            <Typography
-                                                                 variant="h5"
-                                                                 gutterBottom
-                                                                 component="div"
-                                                            >
-                                                                 Detail list
-                                                            </Typography>
-                                                            {(dataItemList[
+                                   {dataItemList.map((row, index) => (
+                                        <React.Fragment key={index}>
+                                             <TableRow>
+                                                  <TableCell>
+                                                       <IconButton
+                                                            className="text-white"
+                                                            size="small"
+                                                            onClick={() => {
+                                                                 const newOpen =
+                                                                      [
+                                                                           ...openTable,
+                                                                      ]
+                                                                 newOpen[
+                                                                      index
+                                                                 ] =
+                                                                      !newOpen[
+                                                                           index
+                                                                      ]
+                                                                 setOpenTable(
+                                                                      newOpen
+                                                                 )
+                                                            }}
+                                                       >
+                                                            {openTable[
                                                                  index
-                                                            ]
-                                                                 ?.results as resultsMovie[]) ? (
-                                                                 <Table aria-label="purchases">
-                                                                      <TableHead>
-                                                                           <TableRow>
-                                                                                <TableCell>
-                                                                                     Movie
-                                                                                </TableCell>
-                                                                                <TableCell>
-                                                                                     Category
-                                                                                </TableCell>
-                                                                                <TableCell>
-                                                                                     Comment
-                                                                                </TableCell>
-                                                                                <TableCell>
-                                                                                     Delete
-                                                                                </TableCell>
-                                                                           </TableRow>
-                                                                      </TableHead>
-                                                                      <TableBody>
-                                                                           {row?.results?.map(
-                                                                                (
-                                                                                     historyRow,
-                                                                                     index
-                                                                                ) => (
-                                                                                     <TableRow
-                                                                                          key={
-                                                                                               index
-                                                                                          }
-                                                                                     >
-                                                                                          <TableCell
-                                                                                               component="th"
-                                                                                               scope="row"
-                                                                                               className="flex items-center gap-5"
-                                                                                          >
-                                                                                               <img
-                                                                                                    src={`${URLImg}${historyRow.poster_path}`}
-                                                                                                    alt=""
-                                                                                                    className="w-[120px] h-[120px]"
-                                                                                               />
-                                                                                               <Typography>
-                                                                                                    {
-                                                                                                         historyRow.original_title
-                                                                                                    }
-                                                                                               </Typography>
-                                                                                          </TableCell>
+                                                            ] ? (
+                                                                 <KeyboardArrowUpIcon />
+                                                            ) : (
+                                                                 <KeyboardArrowDownIcon />
+                                                            )}
+                                                       </IconButton>
+                                                  </TableCell>
+                                                  <TableCell
+                                                       component="th"
+                                                       scope="row"
+                                                       className="text-white"
+                                                  >
+                                                       {row.name}
+                                                  </TableCell>
 
-                                                                                          <TableCell>
-                                                                                               {dataSelectGenres
-                                                                                                    .filter(
-                                                                                                         (
-                                                                                                              dataGenres
-                                                                                                         ) => {
-                                                                                                              return historyRow.genre_ids?.some(
+                                                  <TableCell
+                                                       align="center"
+                                                       className="text-white"
+                                                  >
+                                                       {row.description}
+                                                  </TableCell>
+                                                  <TableCell
+                                                       className="text-white"
+                                                       align="right"
+                                                       onClick={() =>
+                                                            handlerDeleteList(
+                                                                 row.id as number
+                                                            )
+                                                       }
+                                                  >
+                                                       <DeleteIcon />
+                                                  </TableCell>
+                                                  <TableCell
+                                                       className="text-white"
+                                                       align="right"
+                                                       onClick={() =>
+                                                            handlerUpdateList(
+                                                                 row.id as number,
+                                                                 row.name as string,
+                                                                 row.description as string
+                                                            )
+                                                       }
+                                                  >
+                                                       <CreateIcon />
+                                                  </TableCell>
+                                                  <TableCell
+                                                       className="text-white"
+                                                       align="right"
+                                                       onClick={() =>
+                                                            handlerClearItemList(
+                                                                 row.id as number
+                                                            )
+                                                       }
+                                                  >
+                                                       <DeleteIcon />
+                                                  </TableCell>
+                                             </TableRow>
+                                             <TableRow>
+                                                  <TableCell
+                                                       style={{
+                                                            paddingBottom: 0,
+                                                            paddingTop: 0,
+                                                       }}
+                                                       colSpan={6}
+                                                       className="text-white"
+                                                  >
+                                                       <Collapse
+                                                            in={
+                                                                 openTable[
+                                                                      index
+                                                                 ]
+                                                            }
+                                                            timeout="auto"
+                                                            unmountOnExit
+                                                       >
+                                                            <Box
+                                                                 sx={{
+                                                                      margin: 1,
+                                                                 }}
+                                                            >
+                                                                 <Typography
+                                                                      variant="h5"
+                                                                      gutterBottom
+                                                                      component="div"
+                                                                 >
+                                                                      Detail
+                                                                      list
+                                                                 </Typography>
+                                                                 {row &&
+                                                                 (
+                                                                      row?.results as resultsMovie[]
+                                                                 )?.length >
+                                                                      0 ? (
+                                                                      <Table>
+                                                                           <TableHead>
+                                                                                <TableRow>
+                                                                                     <TableCell className="text-white">
+                                                                                          Movie
+                                                                                     </TableCell>
+                                                                                     <TableCell className="text-white">
+                                                                                          Category
+                                                                                     </TableCell>
+                                                                                     <TableCell className="text-white">
+                                                                                          Comment
+                                                                                     </TableCell>
+                                                                                     <TableCell className="text-white">
+                                                                                          Delete
+                                                                                     </TableCell>
+                                                                                </TableRow>
+                                                                           </TableHead>
+                                                                           <TableBody>
+                                                                                {row?.results?.map(
+                                                                                     (
+                                                                                          historyRow,
+                                                                                          index
+                                                                                     ) => (
+                                                                                          <TableRow
+                                                                                               key={
+                                                                                                    index
+                                                                                               }
+                                                                                          >
+                                                                                               <TableCell
+                                                                                                    component="th"
+                                                                                                    scope="row"
+                                                                                                    className="flex items-center gap-5 text-white"
+                                                                                               >
+                                                                                                    <img
+                                                                                                         src={`${URLImg}${historyRow.poster_path}`}
+                                                                                                         alt=""
+                                                                                                         className="w-[120px] h-[120px]"
+                                                                                                    />
+                                                                                                    <Typography>
+                                                                                                         {
+                                                                                                              historyRow.original_title
+                                                                                                         }
+                                                                                                    </Typography>
+                                                                                               </TableCell>
+
+                                                                                               <TableCell className="text-white">
+                                                                                                    {dataSelectGenres
+                                                                                                         .filter(
+                                                                                                              (
+                                                                                                                   dataGenres
+                                                                                                              ) => {
+                                                                                                                   return historyRow.genre_ids?.some(
+                                                                                                                        (
+                                                                                                                             genreId
+                                                                                                                        ) =>
+                                                                                                                             genreId ==
+                                                                                                                             dataGenres.id
+                                                                                                                   )
+                                                                                                              }
+                                                                                                         )
+                                                                                                         .map(
+                                                                                                              (
+                                                                                                                   genre
+                                                                                                              ) =>
+                                                                                                                   genre.name
+                                                                                                         )
+                                                                                                         .join(
+                                                                                                              ", "
+                                                                                                         )}
+                                                                                               </TableCell>
+                                                                                               <TableCell
+                                                                                                    component="th"
+                                                                                                    scope="row"
+                                                                                                    className="text-white"
+                                                                                               >
+                                                                                                    <Typography>
+                                                                                                         {((
+                                                                                                              row?.comments as commentType
+                                                                                                         )[
+                                                                                                              `${historyRow.media_type}:${historyRow.id}`
+                                                                                                         ] as string) !=
+                                                                                                         null
+                                                                                                              ? ((
+                                                                                                                     row?.comments as commentType
+                                                                                                                )[
+                                                                                                                     `${historyRow.media_type}:${historyRow.id}`
+                                                                                                                ] as string)
+                                                                                                              : "No comment"}
+                                                                                                    </Typography>
+                                                                                                    <CreateIcon
+                                                                                                         onClick={() =>
+                                                                                                              handlerUpdateComment(
                                                                                                                    (
-                                                                                                                        genreId
-                                                                                                                   ) =>
-                                                                                                                        genreId ==
-                                                                                                                        dataGenres.id
+                                                                                                                        row?.comments as commentType
+                                                                                                                   )[
+                                                                                                                        `${historyRow.media_type}:${historyRow.id}`
+                                                                                                                   ] as string,
+                                                                                                                   historyRow.id as number,
+                                                                                                                   row.id as number
                                                                                                               )
                                                                                                          }
-                                                                                                    )
-                                                                                                    .map(
-                                                                                                         (
-                                                                                                              genre
-                                                                                                         ) =>
-                                                                                                              genre.name
-                                                                                                    )
-                                                                                                    .join(
-                                                                                                         ", "
-                                                                                                    )}
-                                                                                          </TableCell>
-                                                                                          <TableCell
-                                                                                               component="th"
-                                                                                               scope="row"
-                                                                                          >
-                                                                                               <Typography>
-                                                                                                    {((
-                                                                                                         row?.comments as commentType
-                                                                                                    )[
-                                                                                                         `${historyRow.media_type}:${historyRow.id}`
-                                                                                                    ] as string) !=
-                                                                                                    null
-                                                                                                         ? ((
-                                                                                                                row?.comments as commentType
-                                                                                                           )[
-                                                                                                                `${historyRow.media_type}:${historyRow.id}`
-                                                                                                           ] as string)
-                                                                                                         : "No comment"}
-                                                                                               </Typography>
-                                                                                               <CreateIcon
-                                                                                                    onClick={() =>
-                                                                                                         handlerUpdateComment(
-                                                                                                              (
-                                                                                                                   row?.comments as commentType
-                                                                                                              )[
-                                                                                                                   `${historyRow.media_type}:${historyRow.id}`
-                                                                                                              ] as string,
-                                                                                                              historyRow.id as number,
-                                                                                                              row.id as number
-                                                                                                         )
-                                                                                                    }
-                                                                                               />
-                                                                                          </TableCell>
-                                                                                          <TableCell>
-                                                                                               <DeleteIcon
-                                                                                                    onClick={() =>
-                                                                                                         handleDeleteItem(
-                                                                                                              row.id as number,
-                                                                                                              historyRow.id as number
-                                                                                                         )
-                                                                                                    }
-                                                                                               />
-                                                                                          </TableCell>
-                                                                                     </TableRow>
-                                                                                )
-                                                                           )}
-                                                                      </TableBody>
-                                                                 </Table>
-                                                            ) : (
-                                                                 "There are no movies"
-                                                            )}
-                                                       </Box>
-                                                  </Collapse>
-                                             </TableCell>
-                                        </TableRow>
-                                   </React.Fragment>
-                              ))}
-                         </TableBody>
-                    </Table>
+                                                                                                    />
+                                                                                               </TableCell>
+                                                                                               <TableCell className="text-white">
+                                                                                                    <DeleteIcon
+                                                                                                         onClick={() =>
+                                                                                                              handleDeleteItem(
+                                                                                                                   row.id as number,
+                                                                                                                   historyRow.id as number
+                                                                                                              )
+                                                                                                         }
+                                                                                                    />
+                                                                                               </TableCell>
+                                                                                          </TableRow>
+                                                                                     )
+                                                                                )}
+                                                                           </TableBody>
+                                                                      </Table>
+                                                                 ) : (
+                                                                      <Typography className="text-white">
+                                                                           There
+                                                                           are
+                                                                           no
+                                                                           movies
+                                                                      </Typography>
+                                                                 )}
+                                                            </Box>
+                                                       </Collapse>
+                                                  </TableCell>
+                                             </TableRow>
+                                        </React.Fragment>
+                                   ))}
+                              </TableBody>
+                         </Table>
+                    ) : (
+                         <Typography className="flex items-center justify-center relative top-5 text-white">
+                              You don't have any list of favorite movies
+                         </Typography>
+                    )}
                </Box>
           </>
      )

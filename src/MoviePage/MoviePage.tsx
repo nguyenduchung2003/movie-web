@@ -27,6 +27,7 @@ import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { PayloadAction } from "@reduxjs/toolkit"
 import { detailMovieType } from "../types/Movie"
+
 const MoviePage = () => {
      const { id } = useParams()
      // const [id, setSent] = useState<string>(id || "")
@@ -41,6 +42,7 @@ const MoviePage = () => {
      const dataDetailTrailer = useSelector(
           (state: RootState) => state.pageMovie.trailerMovie || {}
      )
+     console.log("dataDetailTrailer", dataDetailTrailer)
 
      // const accessTokenSelector = useSelector(
      //      (state: RootState) => state.accountSlice.access_token
@@ -98,7 +100,20 @@ const MoviePage = () => {
      const [open, setOpen] = useState<boolean>(false)
      const handlerLikeMovie = (id: number) => {
           console.log(id)
-          setOpen(true)
+          if (Object.keys(userObj).length === 0) {
+               toast.error("Please login to add movie to list", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+               })
+          } else {
+               setOpen(true)
+          }
      }
 
      const [valueIdList, setValueIdList] = useState("")
@@ -180,7 +195,10 @@ const MoviePage = () => {
           <>
                <Box className="">
                     <ToastContainer />
-                    <NavBar />
+                    <Box className="bg-[rgba(0,0,0,.75)] text-white">
+                         <NavBar />
+                    </Box>
+
                     <ToastListFavorite
                          open={open}
                          handleCancel={handleCancel}
@@ -189,130 +207,122 @@ const MoviePage = () => {
                          valueIdList={valueIdList}
                          // dataItemList={dataItemList}
                     ></ToastListFavorite>
-                    <Box className="flex flex-col ">
-                         <Divider className="h-0"></Divider>
-                         <Box className="flex ">
-                              <Box className="w-[50%] ">
-                                   <Box className="flex w-[90%] h-[100%] flex-col justify-around ">
-                                        <Box className="w-[100%]  flex  flex-col gap-5 p-3">
-                                             <Box
-                                                  className="w-full bg-no-repeat bg-cover rounded  bg-center "
-                                                  style={{
-                                                       backgroundImage: `url(https://image.tmdb.org/t/p/w500/${dataDetail?.poster_path})`,
-                                                  }}
-                                             >
-                                                  <img
-                                                       src={`https://image.tmdb.org/t/p/w500/${dataDetail?.poster_path}`}
-                                                       alt=""
-                                                       className="h-[350px] w-[100%]  object-contain "
-                                                  />
-                                             </Box>
-
-                                             <Box className="flex justify-around w-full">
-                                                  <Button
-                                                       type="submit"
-                                                       variant="contained"
-                                                       className="rounded h-[50px] "
-                                                       color="primary"
-                                                       onClick={() =>
-                                                            handlerLikeMovie(
-                                                                 dataDetail.id as number
-                                                            )
-                                                       }
-                                                  >
-                                                       Thích phim
-                                                  </Button>
-                                             </Box>
-                                        </Box>
-
-                                        <Box className="w-[100%] flex flex-col  gap-4 max-h-[250px] overflow-y-auto scrollbar overflow-x-hidden">
-                                             <Box className="flex flex-col justify-center items-center">
-                                                  <Typography
-                                                       variant="h5"
-                                                       className="text-yellow-300"
-                                                  >
-                                                       {dataDetail.title}
-                                                  </Typography>
-                                                  <Typography className="text-yellow-300 text-sm ">
-                                                       ({dataDetail.tagline})
-                                                  </Typography>
-                                             </Box>
-                                             <Box>
-                                                  <InforMovie
-                                                       belongs_to_collection={
-                                                            dataDetail.belongs_to_collection
-                                                       }
-                                                       genres={
-                                                            dataDetail.genres
-                                                       }
-                                                       production_companies={
-                                                            dataDetail.production_companies
-                                                       }
-                                                       production_countries={
-                                                            dataDetail.production_countries
-                                                       }
-                                                       release_date={
-                                                            dataDetail.release_date
-                                                       }
-                                                       runtime={
-                                                            dataDetail.runtime
-                                                       }
-                                                       spoken_languages={
-                                                            dataDetail.spoken_languages
-                                                       }
-                                                       vote_average={
-                                                            dataDetail.vote_average
-                                                       }
-                                                       vote_count={
-                                                            dataDetail.vote_count
-                                                       }
-                                                  />
-                                             </Box>
-                                        </Box>
-                                   </Box>
-                              </Box>
-                              <Box className="flex w-[50%]  flex-col">
-                                   <Box className="w-[100%] ">
-                                        <Typography variant="h4">
-                                             Movie content
-                                        </Typography>
-                                        <Typography className="leading-7">
-                                             {dataDetail.overview}
-                                        </Typography>
-                                   </Box>
-                                   <Typography variant="h4" className="py-2">
-                                        Trailer and Clips
-                                   </Typography>
-                                   <Box
-                                        className="flex gap-5  overflow-x-auto max-w-[100%] flex-nowrap scrollbar"
-                                        ref={scrollRef}
-                                   >
-                                        {dataDetailTrailer.results?.map(
-                                             (trailerMovie, index) => {
-                                                  return (
-                                                       <YouTube
-                                                            key={index}
-                                                            videoId={
-                                                                 trailerMovie.key
-                                                            }
-                                                            opts={opts}
-                                                            onReady={
-                                                                 onPlayerReady
-                                                            }
-                                                            className="pointer-events-none"
-                                                       ></YouTube>
-                                                  )
+                    <Box className="flex flex-col bg-black text-white">
+                         <Box className="flex justify-center items-center flex-col">
+                              <Box
+                                   className="w-[100%] h-[350px] bg-no-repeat bg-cover  bg-center"
+                                   style={{
+                                        backgroundImage: `url(https://image.tmdb.org/t/p/original/${dataDetail?.poster_path})`,
+                                   }}
+                              >
+                                   <Box className="flex justify-center relative top-[190px]">
+                                        <InforMovie
+                                             title={dataDetail.title}
+                                             tagline={dataDetail.tagline}
+                                             genres={dataDetail.genres}
+                                             release_date={
+                                                  dataDetail.release_date
                                              }
-                                        )}
+                                             runtime={dataDetail.runtime}
+                                             spoken_languages={
+                                                  dataDetail.spoken_languages
+                                             }
+                                             vote_average={
+                                                  dataDetail.vote_average
+                                             }
+                                             vote_count={dataDetail.vote_count}
+                                        />
                                    </Box>
-                                   <Typography variant="h4" className="py-2">
-                                        Caster
+                                   {/* </Box> */}
+
+                                   <img
+                                        src={`https://image.tmdb.org/t/p/w500/${dataDetail?.poster_path}`}
+                                        alt=""
+                                        className="h-[350px] w-[100%] object-contain relative top-[0px] left-[-25%]"
+                                   />
+                              </Box>
+
+                              <Box className="w-[60%] flex justify-end ml-[500px] flex-col gap-2 mt-4">
+                                   <Typography variant="h4">
+                                        Movie Summary
                                    </Typography>
-                                   <Casts id={Number(dataDetail.id)}></Casts>
+                                   <Typography className="leading-7">
+                                        {dataDetail.overview}
+                                   </Typography>
+                                   <Button
+                                        type="submit"
+                                        variant="contained"
+                                        className="rounded h-[40px] w-[130px]"
+                                        color="primary"
+                                        onClick={() =>
+                                             handlerLikeMovie(
+                                                  dataDetail.id as number
+                                             )
+                                        }
+                                   >
+                                        Add list
+                                   </Button>
+                              </Box>
+
+                              <Box className="flex w-[100%] gap-5 mt-5 ">
+                                   <Box className="w-[30%] flex flex-col justify-center items-center relative top-10">
+                                        <Typography
+                                             variant="h4"
+                                             className="py-2"
+                                        >
+                                             Caster
+                                        </Typography>
+                                        <Casts
+                                             id={Number(dataDetail.id)}
+                                        ></Casts>
+                                   </Box>
+
+                                   <Box className="flex flex-col justify-center max-w-[70%] items-center">
+                                        <Typography
+                                             variant="h4"
+                                             className="py-2 "
+                                        >
+                                             Trailer and Clips
+                                        </Typography>
+                                        <Box
+                                             className="flex gap-5  overflow-x-auto max-w-[100%] flex-nowrap scrollbarMovieTrailer"
+                                             ref={scrollRef}
+                                        >
+                                             {dataDetailTrailer.results?.map(
+                                                  (trailerMovie, index) => {
+                                                       return (
+                                                            <>
+                                                                 <YouTube
+                                                                      key={
+                                                                           index
+                                                                      }
+                                                                      videoId={
+                                                                           trailerMovie.key
+                                                                      }
+                                                                      opts={
+                                                                           opts
+                                                                      }
+                                                                      onReady={
+                                                                           onPlayerReady
+                                                                      }
+                                                                 ></YouTube>
+                                                            </>
+                                                       )
+                                                  }
+                                             )}
+                                        </Box>
+                                   </Box>
                               </Box>
                          </Box>
-                         <Box className="w-full">
-                              <Divider>
+                         <Box className="w-full mt-10">
+                              <Divider
+                                   className="text-white "
+                                   sx={{
+                                        "&::before, &::after": {
+                                             borderColor: "white",
+                                        },
+                                   }}
+                              >
                                    <Typography variant="h5">
                                         Movie Similar
                                    </Typography>

@@ -80,11 +80,11 @@ const ToastListFavorite = ({
                     TransitionProps={{ onEntering: handleEntering }}
                     open={open}
                >
-                    <DialogTitle>Danh sach phim yeu thich</DialogTitle>
+                    <DialogTitle>List of favorite movies </DialogTitle>
                     {dataSelector?.length == 0 ? (
                          <Box className="flex justify-center items-center">
                               <Typography>
-                                   Chưa có list yêu thích nào
+                                   You don't have any list of favorite movies
                               </Typography>
                               <Button onClick={handleCancel}>Cancel</Button>
                          </Box>

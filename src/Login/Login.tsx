@@ -31,6 +31,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "../Store/store"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import { pageMovie } from "../Slice/SliceMovie"
 // import { ListMovieFavorites } from "../axios/customAxios"
 const Login = () => {
      const navigate = useNavigate()
@@ -38,6 +39,10 @@ const Login = () => {
      // const tokenUser = useSelector(
      //      (state: RootState) => state.accountSlice.token
      // )
+     const dispatch = useDispatch<AppDispatch>()
+     useEffect(() => {
+          dispatch(pageMovie(1))
+     }, [dispatch])
      const [checkEye, setCheckEye] = useState<boolean>(true)
 
      interface MyFormValues {
@@ -62,7 +67,7 @@ const Login = () => {
      // const dataSelectorToken = useSelector(
      //      (state: RootState) => state.accountSlice.token
      // )
-     const dispatch = useDispatch<AppDispatch>()
+
      const dataSelectorSessionId = useSelector(
           (state: RootState) => state.accountSlice.sessionId
      )
@@ -150,7 +155,7 @@ const Login = () => {
                                         )
                                    ) {
                                         toast.error(
-                                             "Tai khoan hoac mat khau khong chinh xac",
+                                             "Account or password is incorrect",
                                              {
                                                   position: "top-right",
                                                   autoClose: 3000,
@@ -169,7 +174,7 @@ const Login = () => {
                                    )
                               } else {
                                    toast.error(
-                                        "Tai khoan hoac mat khau khong chinh xac",
+                                        "Account or password is incorrect",
                                         {
                                              position: "top-right",
                                              autoClose: 3000,
@@ -316,12 +321,12 @@ const Login = () => {
                                         Login
                                    </Button>
                                    <Typography className="text-white ">
-                                        Tôi chưa có tài khoản
+                                        I do not have account
                                         <NavLink
                                              to="/movie-web/register"
                                              className="text-red-600 relative left-5"
                                         >
-                                             Đăng kí
+                                             Register
                                         </NavLink>
                                    </Typography>
                               </Form>

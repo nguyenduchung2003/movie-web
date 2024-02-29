@@ -1,6 +1,7 @@
 import {
      Button,
      Box,
+
      // , Typography
 } from "@mui/material"
 import {
@@ -142,48 +143,50 @@ const FavoriteMoviePage = () => {
      }
      return (
           <>
-               <NavBar />
-               <ToastContainer />
-               <Box>
-                    <DialogList
-                         open={open}
-                         handleClose={handleClose}
-                         listName={listName}
-                         setListName={setListName}
-                         listDescription={listDescription}
-                         setListDescription={setListDescription}
-                         handleAgreeAdd={handleAgreeAdd}
-                         updateList={updateList}
-                         handleAgreeUpdate={handleAgreeUpdate}
-                    />
-               </Box>
+               <Box className="bg-black text-white h-screen">
+                    <Box className="bg-[rgba(0,0,0,.75)] text-white border border-black border-b-white   border-solid ">
+                         <NavBar />
+                    </Box>
 
-               {/* {listMovie && listMovie?.length > 0 ? ( */}
-               {/* <>
-                         {" "} */}
-               <FavoriteMovieHome
-                    // listIdFavorite={listMovie as number[]}
-                    accessToken={userObj.sessionId as string}
-                    // name={listName}
-                    // description={listDescription}
-                    setOpen={setOpen}
-                    setListName={setListName}
-                    setListDescription={setListDescription}
-                    setUpdateList={setUpdateList}
-                    setListId={setListId}
-                    dataItemList={dataItemList}
-               />
-               {/* </> */}
-               {/* ) : (
-                    <Typography>Ban chua co list nao</Typography>
-               )} */}
-               <Button
-                    variant="outlined"
-                    onClick={handleClickOpen}
-                    className="mt-[10px]"
-               >
-                    Add list favorite
-               </Button>
+                    <ToastContainer />
+                    <Box>
+                         <DialogList
+                              open={open}
+                              handleClose={handleClose}
+                              listName={listName}
+                              setListName={setListName}
+                              listDescription={listDescription}
+                              setListDescription={setListDescription}
+                              handleAgreeAdd={handleAgreeAdd}
+                              updateList={updateList}
+                              handleAgreeUpdate={handleAgreeUpdate}
+                         />
+                    </Box>
+
+                    <Box>
+                         <FavoriteMovieHome
+                              // listIdFavorite={listMovie as number[]}
+                              accessToken={userObj.sessionId as string}
+                              // name={listName}
+                              // description={listDescription}
+                              setOpen={setOpen}
+                              setListName={setListName}
+                              setListDescription={setListDescription}
+                              setUpdateList={setUpdateList}
+                              setListId={setListId}
+                              dataItemList={dataItemList}
+                         />
+                         <Box className="flex justify-end items-end ">
+                              <Button
+                                   variant="outlined"
+                                   onClick={handleClickOpen}
+                                   className="mt-10 flex justify-end "
+                              >
+                                   Add list favorite
+                              </Button>
+                         </Box>
+                    </Box>
+               </Box>
           </>
      )
 }

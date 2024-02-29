@@ -5,6 +5,7 @@ import { useState } from "react"
 // import { AppDispatch, RootState } from "../Store/store"
 import {
      Box,
+     Button,
      // , Button
 } from "@mui/material"
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew"
@@ -55,36 +56,41 @@ const ListMovie = ({ data, handleClickItem }: Props) => {
 
      return (
           <>
-               <Box className="w-[100%] flex justify-center items-center ">
-                    <ArrowBackIosNewIcon
+               <Box className="w-full flex justify-center items-center ">
+                    <Button
+                         className="hover:bg-[rgba(0,0,0,.75)] cursor-pointer "
                          onClick={onClickBackItem}
-                         className="cursor-pointer "
-                    />
+                    >
+                         <ArrowBackIosNewIcon />
+                    </Button>
 
                     {data
                          ?.slice(itemMovieBack, itemMovieNext)
                          .map((item: resultsMovie, index: number) => (
                               <Box
                                    key={index}
-                                   className="w-[240px] flex flex-col justify-center group/item "
+                                   className="w-[15%] flex flex-col justify-center group/item "
                               >
                                    <img
                                         src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
                                         loading="lazy"
-                                        className="  h-[300px] scale-[0.90] rounded"
+                                        className="  xl:h-[300px] lg:h-[250px] scale-[0.90] rounded"
                                         id={String(item.id)}
                                         onClick={handleClickItem}
                                    />
                                    <Box className="group/edit invisible  top-[-10px] z-10 text-white bg-[rgba(0,0,0,.75)] scale-[0.90]  group-hover/item:w-[100%] group-hover/item:h-[50px] flex justify-center items-center   group-hover/item:visible group-hover/item:relative">
-                                        <Box>{item.title}</Box>
+                                        <Box className="truncate">
+                                             {item.title}
+                                        </Box>
                                    </Box>
                               </Box>
                          ))}
-
-                    <ArrowForwardIosIcon
+                    <Button
+                         className="hover:bg-[rgba(0,0,0,.75)] cursor-pointer "
                          onClick={onClickNextItem}
-                         className="cursor-pointer"
-                    />
+                    >
+                         <ArrowForwardIosIcon />
+                    </Button>
                </Box>
           </>
      )
